@@ -8,7 +8,7 @@ const validateResume = require("../validators/resumeValidator");
 const {
   createResume,
   getResumes,
-  getResume,
+  getResumeById,
   updateResume,
   deleteResume,
 } = require("../controllers/resumeController");
@@ -39,9 +39,9 @@ exports.getResumes = async (req, res) => {
 };
 router.post("/", auth, validateResume, createResume);
 router.get("/", auth, getResumes);
-router.get("/:id", auth, getResume);
+router.get("/:id", auth, getResumeById);
 
-router.put("/:id", auth, updateResume);
+router.put("/:id", auth, validateResume, updateResume);
 
 router.delete("/:id", auth, deleteResume);
 module.exports = router;
